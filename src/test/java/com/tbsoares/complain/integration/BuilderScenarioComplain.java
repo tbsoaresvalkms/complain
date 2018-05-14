@@ -12,6 +12,15 @@ public class BuilderScenarioComplain {
 
     private static Faker faker = new Faker();
 
+    static Complain createAnyComplain() {
+        return Complain.builder()
+                .title(faker.book().title())
+                .description(faker.lorem().paragraph())
+                .locale(faker.address().cityName())
+                .company(faker.company().bs())
+                .build();
+    }
+
     static ComplainDTO createAnyComplainDTO() {
         return ComplainDTO.builder()
                 .title(faker.book().title())
@@ -96,6 +105,15 @@ public class BuilderScenarioComplain {
                 .description(faker.lorem().paragraph())
                 .locale(faker.address().cityName())
                 .company("")
+                .build();
+    }
+
+    static ComplainDTO createComplainDTOWithOtherData() {
+        return ComplainDTO.builder()
+                .title(faker.book().title())
+                .description(faker.lorem().paragraph())
+                .locale(faker.address().cityName())
+                .company(faker.company().bs())
                 .build();
     }
 
