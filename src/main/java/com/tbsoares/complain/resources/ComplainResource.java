@@ -2,6 +2,7 @@ package com.tbsoares.complain.resources;
 
 import com.tbsoares.complain.dto.ComplainDTO;
 import com.tbsoares.complain.service.DefaultService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/complain", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(value = "Complain")
 public class ComplainResource {
 
     private final DefaultService<ComplainDTO> complainService;
