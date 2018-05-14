@@ -2,9 +2,11 @@ package com.tbsoares.complain.resources;
 
 import com.tbsoares.complain.dto.ComplainDTO;
 import com.tbsoares.complain.service.DefaultService;
+import com.tbsoares.complain.util.RequestsHelpers;
 import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,13 +37,18 @@ public class ComplainResource {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ComplainDTO create(@Valid @RequestBody ComplainDTO complainDTO) {
+    public ComplainDTO create(@Valid @RequestBody ComplainDTO complainDTO, Errors errors) {
+        RequestsHelpers.ifAlreadyHaveSomeFieldsThrowException(complainDTO, "id");
+        RequestsHelpers.verifyErrors(errors);
+
         return complainService.save(complainDTO);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ComplainDTO update(@Valid @RequestBody ComplainDTO complainDTO) {
+    public ComplainDTO update(@Valid @RequestBody ComplainDTO complainDTO, Errors errors) {
+        RequestsHelpers.verifyErrors(errors);
+
         return complainService.update(complainDTO);
     }
 

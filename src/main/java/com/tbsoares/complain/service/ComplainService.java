@@ -3,6 +3,7 @@ package com.tbsoares.complain.service;
 
 import com.tbsoares.complain.domain.Complain;
 import com.tbsoares.complain.dto.ComplainDTO;
+import com.tbsoares.complain.exception.ComplainNotFoundException;
 import com.tbsoares.complain.mapper.EntityMapper;
 import com.tbsoares.complain.repository.ComplainRepository;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
                 .map(c -> c.updateAttr(complainToUpdate))
                 .map(repository::save)
                 .map(mapper::toDto)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ComplainNotFoundException::new);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
         return optional(id)
                 .flatMap(repository::findById)
                 .map(mapper::toDto)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ComplainNotFoundException::new);
     }
 
     @Override
