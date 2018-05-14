@@ -18,4 +18,8 @@ public class Complain {
     private String description;
     private String locale;
     private String company;
+
+    public Complain updateAttr(Complain complain){
+        return this;
+    }
 }
