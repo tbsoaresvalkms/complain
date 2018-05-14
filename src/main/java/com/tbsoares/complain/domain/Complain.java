@@ -1,5 +1,6 @@
 package com.tbsoares.complain.domain;
 
+import com.tbsoares.complain.util.UpdateAttributes;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +20,7 @@ public class Complain {
     private String locale;
     private String company;
 
-    public Complain updateAttr(Complain complain){
-        return this;
+    public Complain updateAttr(Complain complain) {
+        return UpdateAttributes.updateOnlyNotNull(this, complain, "id");
     }
 }
