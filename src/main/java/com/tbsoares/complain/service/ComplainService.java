@@ -1,6 +1,7 @@
 package com.tbsoares.complain.service;
 
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.tbsoares.complain.domain.Complain;
 import com.tbsoares.complain.dto.ComplainDTO;
 import com.tbsoares.complain.exception.ComplainNotFoundException;
@@ -26,6 +27,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
 
 
     @Override
+    @HystrixCommand
     public ComplainDTO save(ComplainDTO complainDTO) {
         return optional(complainDTO)
                 .map(mapper::toEntity)
@@ -35,6 +37,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
     }
 
     @Override
+    @HystrixCommand
     public ComplainDTO update(ComplainDTO complainDTO) {
         Complain complainToUpdate = mapper.toEntity(complainDTO);
 
@@ -48,6 +51,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
     }
 
     @Override
+    @HystrixCommand
     public List<ComplainDTO> findAll() {
         return repository.findAll()
                 .stream()
@@ -56,6 +60,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
     }
 
     @Override
+    @HystrixCommand
     public ComplainDTO findOne(String id) {
         return optional(id)
                 .flatMap(repository::findById)
@@ -64,6 +69,7 @@ public class ComplainService implements DefaultService<ComplainDTO> {
     }
 
     @Override
+    @HystrixCommand
     public void delete(String id) {
         optional(id)
                 .filter(repository::existsById)
