@@ -2,7 +2,7 @@ package com.tbsoares.complain.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -11,12 +11,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ComplainDTO {
     private String id;
-    @NotNull
+    @NotEmpty
     private String title;
-    @NotNull
+    @NotEmpty
     private String description;
-    @NotNull
+    @NotEmpty
     private String locale;
-    @NotNull
+    @NotEmpty
     private String company;
 }
