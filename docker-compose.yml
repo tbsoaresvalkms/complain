@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  complain:
+    image: tbsoaresvalkms/complain:1.0
+    ports:
+      - 8080:8080
+    links:
+      - mongo
+  mongo:
+    image: frodenas/mongodb:latest
+    environment:
+      MONGODB_USERNAME: myusername
+      MONGODB_PASSWORD: mypassword
+      MONGODB_DBNAME: mydb
+    ports:
+      - 27017:27017
