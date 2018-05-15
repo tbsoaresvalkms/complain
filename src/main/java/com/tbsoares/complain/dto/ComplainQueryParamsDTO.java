@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static com.tbsoares.complain.util.Optional.optional;
@@ -46,14 +45,17 @@ public class ComplainQueryParamsDTO implements QueryParams {
                 .map(c -> Criteria.where("company").in(c))
                 .ifPresent(criterias::add);
 
-        title.stream()
-                .map(c -> Criteria.where("title").regex(c))
-                .forEach(criterias::add);
+        optional(title)
+                .filter(Utils::notEmpty)
+                .ifPresent(l -> l.stream()
+                        .map(c -> Criteria.where("title").regex(c))
+                        .forEach(criterias::add));
 
-        description.stream()
-                .map(c -> Criteria.where("title").regex(c))
-                .forEach(criterias::add);
-
+        optional(description)
+                .filter(Utils::notEmpty)
+                .ifPresent(l -> l.stream()
+                        .map(c -> Criteria.where("description").regex(c))
+                        .forEach(criterias::add));
 
         Criteria a = criterias
                 .stream()

@@ -5,13 +5,13 @@ import com.tbsoares.complain.dto.ComplainQueryParamsDTO;
 import com.tbsoares.complain.service.DefaultService;
 import com.tbsoares.complain.util.RequestsHelpers;
 import io.swagger.annotations.Api;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/complain", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -26,7 +26,7 @@ public class ComplainResource {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ComplainDTO> index(ComplainQueryParamsDTO queryParamsDTO) {
+    public Page<ComplainDTO> index(ComplainQueryParamsDTO queryParamsDTO) {
         return complainService.findAll(queryParamsDTO);
     }
 

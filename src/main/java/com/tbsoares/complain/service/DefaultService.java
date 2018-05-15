@@ -1,15 +1,14 @@
 package com.tbsoares.complain.service;
 
 import com.tbsoares.complain.dto.QueryParams;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface DefaultService<T> {
     T save(T t);
 
     T update(T t);
 
-    List<T> findAll(QueryParams queryParams);
+    Page<T> findAll(QueryParams queryParams);
 
     T findOne(String id);
 

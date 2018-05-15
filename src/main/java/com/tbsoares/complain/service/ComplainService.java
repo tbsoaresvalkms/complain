@@ -8,10 +8,8 @@ import com.tbsoares.complain.dto.QueryParams;
 import com.tbsoares.complain.exception.ComplainNotFoundException;
 import com.tbsoares.complain.mapper.EntityMapper;
 import com.tbsoares.complain.repository.ComplainRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.tbsoares.complain.util.Optional.optional;
 
@@ -53,11 +51,9 @@ public class ComplainService implements DefaultService<ComplainDTO> {
 
     @Override
     @HystrixCommand
-    public List<ComplainDTO> findAll(QueryParams queryParams) {
+    public Page<ComplainDTO> findAll(QueryParams queryParams) {
         return repository.findAll(queryParams.getQuery(), queryParams.getPageRequest())
-                .stream()
-                .map(mapper::toDto)
-                .collect(Collectors.toList());
+                .map(mapper::toDto);
     }
 
     @Override
