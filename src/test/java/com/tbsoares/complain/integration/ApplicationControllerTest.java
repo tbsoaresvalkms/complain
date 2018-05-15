@@ -48,14 +48,14 @@ public abstract class ApplicationControllerTest {
         return restTemplate.exchange(uri, method, requestEntity, clazz);
     }
 
-    private <T, K> ResponseEntity<T> execute(String uri, HttpMethod method, ParameterizedTypeReference<T> responseType) {
+    private <T> ResponseEntity<T> execute(String uri, HttpMethod method, ParameterizedTypeReference<T> responseType) {
         HttpEntity requestEntity = new HttpEntity<>(jsonHeaders());
 
         return restTemplate.exchange(uri, method, requestEntity, responseType);
     }
 
     private <K> HttpEntity<K> builderBody(K body) {
-        return new HttpEntity<K>(body, jsonHeaders());
+        return new HttpEntity<>(body, jsonHeaders());
     }
 
     private HttpHeaders jsonHeaders() {

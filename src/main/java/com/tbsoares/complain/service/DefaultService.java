@@ -1,6 +1,6 @@
 package com.tbsoares.complain.service;
 
-import com.tbsoares.complain.dto.QueryParams;
+import com.tbsoares.complain.dto.query.QueryParams;
 import org.springframework.data.domain.Page;
 
 public interface DefaultService<T> {

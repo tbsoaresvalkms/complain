@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Objects;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ComplainController_CreateTests extends ComplainControllerTests {
@@ -36,7 +38,7 @@ public class ComplainController_CreateTests extends ComplainControllerTests {
         ResponseEntity<ComplainDTO> response = post(URL, complainDTO, ComplainDTO.class);
 
         ComplainDTO returnComplainDTO = response.getBody();
-        String complainId = returnComplainDTO.getId();
+        String complainId = Objects.requireNonNull(returnComplainDTO).getId();
 
         assertThat(repository.findById(complainId)
                 .orElseThrow(RuntimeException::new))

@@ -4,7 +4,7 @@ package com.tbsoares.complain.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.tbsoares.complain.domain.Complain;
 import com.tbsoares.complain.dto.ComplainDTO;
-import com.tbsoares.complain.dto.QueryParams;
+import com.tbsoares.complain.dto.query.QueryParams;
 import com.tbsoares.complain.exception.ComplainNotFoundException;
 import com.tbsoares.complain.mapper.EntityMapper;
 import com.tbsoares.complain.repository.ComplainRepository;

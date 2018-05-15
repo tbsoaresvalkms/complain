@@ -1,7 +1,7 @@
 package com.tbsoares.complain.resources;
 
 import com.tbsoares.complain.dto.ComplainDTO;
-import com.tbsoares.complain.dto.ComplainQueryParamsDTO;
+import com.tbsoares.complain.dto.query.ComplainQueryParamsDTO;
 import com.tbsoares.complain.service.DefaultService;
 import com.tbsoares.complain.util.RequestsHelpers;
 import io.swagger.annotations.Api;

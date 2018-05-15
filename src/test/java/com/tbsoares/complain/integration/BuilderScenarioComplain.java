@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
-public class BuilderScenarioComplain {
+class BuilderScenarioComplain {
 
-    private static Faker faker = new Faker();
+    private static final Faker faker = new Faker();
 
     static Complain createAnyComplain() {
         return Complain.builder()
