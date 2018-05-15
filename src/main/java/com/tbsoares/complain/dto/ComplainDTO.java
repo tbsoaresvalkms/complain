@@ -9,6 +9,8 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class ComplainDTO {
     private String id;
     @NotEmpty

@@ -5,6 +5,7 @@ import com.tbsoares.complain.domain.Complain;
 import com.tbsoares.complain.dto.ComplainDTO;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
@@ -115,6 +116,16 @@ public class BuilderScenarioComplain {
                 .locale(faker.address().cityName())
                 .company(faker.company().bs())
                 .build();
+    }
+
+    static List<Complain> createManyComplainWithAnyAction(Long count, Long specificCount, Consumer<Complain> action) {
+        List<Complain> manyComplain = createManyComplain(count);
+
+        manyComplain.stream()
+                .limit(specificCount)
+                .forEach(action);
+
+        return manyComplain;
     }
 
     static List<Complain> createManyComplain(Long count) {

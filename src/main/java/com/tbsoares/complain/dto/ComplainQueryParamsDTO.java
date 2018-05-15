@@ -2,6 +2,7 @@ package com.tbsoares.complain.dto;
 
 import com.tbsoares.complain.util.Utils;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -15,10 +16,9 @@ import java.util.List;
 import static com.tbsoares.complain.util.Optional.optional;
 
 @Getter
+@Setter
 public class ComplainQueryParamsDTO implements QueryParams {
     private List<String> id;
-    private List<String> title;
-    private List<String> description;
     private List<String> locale;
     private List<String> company;
     @Min(0)
@@ -45,24 +45,14 @@ public class ComplainQueryParamsDTO implements QueryParams {
                 .map(c -> Criteria.where("company").in(c))
                 .ifPresent(criterias::add);
 
-        optional(title)
+        Criteria identify = Criteria.where("id").exists(true);
+
+        optional(criterias)
                 .filter(Utils::notEmpty)
-                .ifPresent(l -> l.stream()
-                        .map(c -> Criteria.where("title").regex(c))
-                        .forEach(criterias::add));
+                .map(c -> c.toArray(new Criteria[c.size()]))
+                .ifPresent(identify::andOperator);
 
-        optional(description)
-                .filter(Utils::notEmpty)
-                .ifPresent(l -> l.stream()
-                        .map(c -> Criteria.where("description").regex(c))
-                        .forEach(criterias::add));
-
-        Criteria a = criterias
-                .stream()
-                .reduce(Criteria.where("id").exists(true), Criteria::andOperator);
-
-
-        return Query.query(a);
+        return Query.query(identify);
     }
 
     public PageRequest getPageRequest() {
