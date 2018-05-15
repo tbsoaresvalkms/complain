@@ -1,6 +1,7 @@
 package com.tbsoares.complain.resources;
 
 import com.tbsoares.complain.dto.ComplainDTO;
+import com.tbsoares.complain.dto.ComplainQueryParamsDTO;
 import com.tbsoares.complain.service.DefaultService;
 import com.tbsoares.complain.util.RequestsHelpers;
 import io.swagger.annotations.Api;
@@ -25,8 +26,8 @@ public class ComplainResource {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ComplainDTO> index() {
-        return complainService.findAll();
+    public List<ComplainDTO> index(ComplainQueryParamsDTO queryParamsDTO) {
+        return complainService.findAll(queryParamsDTO);
     }
 
     @GetMapping(value = "/{id}")

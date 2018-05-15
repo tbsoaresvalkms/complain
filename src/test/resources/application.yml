@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: complain
+  data:
+    mongodb:
+      database: mydb
+      host: localhost
+      port: 27017
+      username: myusername
+      password: mypassword

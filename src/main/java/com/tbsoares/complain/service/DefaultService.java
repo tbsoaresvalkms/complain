@@ -1,5 +1,7 @@
 package com.tbsoares.complain.service;
 
+import com.tbsoares.complain.dto.QueryParams;
+
 import java.util.List;
 
 public interface DefaultService<T> {
@@ -7,7 +9,7 @@ public interface DefaultService<T> {
 
     T update(T t);
 
-    List<T> findAll();
+    List<T> findAll(QueryParams queryParams);
 
     T findOne(String id);
 
