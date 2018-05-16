@@ -37,3 +37,5 @@
 
 ## Comentários
 
+Foi criado uma extensão da interface MongoRepository para aceita queries dinâmicas, permitindo consultas com uma ou mais condições. 
+a classe ComplainController_IndexTests aborda essas consultas.
