@@ -37,5 +37,11 @@
 
 ## Comentários
 
-Foi criado uma extensão da interface MongoRepository para aceita queries dinâmicas, permitindo consultas com uma ou mais condições. 
+* Swagger - [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+* Hystrix-Dashboard - [http://localhost:8080/hystrix](http://localhost:8080/hystrix)
+
+* Hystrix-Stream - [http://localhost:8080/hystrix.stream](http://localhost:8080/hystrix.stream)
+
+* Foi criado uma extensão da interface MongoRepository para aceita queries dinâmicas, permitindo consultas com uma ou mais condições. 
 a classe ComplainController_IndexTests aborda essas consultas.
